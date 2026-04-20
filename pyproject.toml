@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "prerender-django"
+version = "1.0.1"
+description = "Django middleware for prerendering JavaScript-rendered pages for SEO via Prerender.io"
+authors = [{ name = "Prerender.io" }]
+license = "MIT"
+readme = "README.md"
+requires-python = ">=3.10"
+keywords = ["django", "prerender", "prerender.io", "seo", "middleware"]
+dependencies = []
+
+[project.urls]
+Repository = "https://github.com/prerender/integrations"
+
+[project.optional-dependencies]
+dev = [
+    "django>=5.0",
+    "pytest>=8.0",
+    "pytest-django>=4.8",
+]
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "tests.settings"
+pythonpath = ["."]
+
+[tool.setuptools.packages.find]
+include = ["prerender_django*"]
