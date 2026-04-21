@@ -64,6 +64,7 @@ def _fetch_prerendered(api_url, user_agent):
     req.add_header('User-Agent', user_agent)
     if token:
         req.add_header('X-Prerender-Token', token)
+    req.add_header('X-Prerender-Int-Type', 'Django')
     try:
         with urllib.request.urlopen(req) as resp:
             return resp.status, resp.read().decode('utf-8')
