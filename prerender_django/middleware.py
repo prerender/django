@@ -1,9 +1,12 @@
 import logging
 import urllib.error
 import urllib.request
+import uuid
 
 from django.conf import settings
 from django.http import HttpResponse
+
+from . import __version__
 
 logger = logging.getLogger(__name__)
 
@@ -65,6 +68,8 @@ def _fetch_prerendered(api_url, user_agent):
     if token:
         req.add_header('X-Prerender-Token', token)
     req.add_header('X-Prerender-Int-Type', 'Django')
+    req.add_header('X-Prerender-Int-Version', __version__)
+    req.add_header('X-Prerender-Request-Id', str(uuid.uuid4()))
     try:
         with urllib.request.urlopen(req) as resp:
             return resp.status, resp.read().decode('utf-8')
