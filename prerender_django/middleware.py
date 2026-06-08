@@ -16,7 +16,7 @@ CRAWLER_USER_AGENTS = [
     'embedly', 'quora link preview', 'showyoubot', 'outbrain',
     'pinterest', 'slackbot', 'developers.google.com/+/web/snippet',
     'w3c_validator', 'perplexity', 'oai-searchbot', 'chatgpt-user',
-    'gptbot', 'claudebot', 'amazonbot',
+    'gptbot', 'claudebot', 'amazonbot', 'iframely',
 ]
 
 EXTENSIONS_TO_IGNORE = frozenset([
