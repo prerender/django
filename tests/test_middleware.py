@@ -51,6 +51,22 @@ def test_static_asset_with_bot_ua_passes_through():
     assert response.content == b'original'
 
 
+def test_font_asset_with_bot_ua_passes_through():
+    middleware = PrerenderMiddleware(normal_response)
+    request = factory.get('/fonts/inter.woff2', HTTP_USER_AGENT=BOT_UA)
+    response = middleware(request)
+    assert response.status_code == 200
+    assert response.content == b'original'
+
+
+def test_uppercase_static_asset_with_bot_ua_passes_through():
+    middleware = PrerenderMiddleware(normal_response)
+    request = factory.get('/STYLES.CSS', HTTP_USER_AGENT=BOT_UA)
+    response = middleware(request)
+    assert response.status_code == 200
+    assert response.content == b'original'
+
+
 def test_escaped_fragment_triggers_prerender():
     middleware = PrerenderMiddleware(normal_response)
     request = factory.get('/', {'_escaped_fragment_': ''}, HTTP_USER_AGENT=BROWSER_UA)
